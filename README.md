@@ -68,32 +68,4 @@ npm run dev:api
 # → http://localhost:4000/api/v1
 ```
 
-## Implemented Scope (100% Complete — All Phases)
-
-| Area | Status |
-|------|--------|
-| **Monorepo scaffold (npm workspaces)** | ✅ Complete |
-| **Design system (color tokens, typography, rich UI)** | ✅ Complete |
-| **Mobile-first layout (Navbar, Sidebar, BottomNav)** | ✅ Complete |
-| **Phase 1: Backend Express + Prisma + Socket.io Server** | ✅ Complete |
-| **Phase 1: Prisma Schema configured for Supabase + PostGIS** | ✅ Complete |
-| **Phase 2: Auth (Register, Login, Refresh JWT, useAuth hook)** | ✅ Complete |
-| **Phase 3: Feed MVP (PostCard, filtering by category/ward/status)** | ✅ Complete |
-| **Phase 3: Create Post Form with interactive MapLibre location picker** | ✅ Complete |
-| **Phase 3: Post Detail View with mini-map and status controls** | ✅ Complete |
-| **Phase 3: Optimistic voting with Citizen Karma points** | ✅ Complete |
-| **Phase 4: OpenFreeMap + MapLibre live map (no tokens needed)** | ✅ Complete |
-| **Phase 4: Color-coded pins (red/amber/teal) + clustering + heatmap** | ✅ Complete |
-| **Phase 5: Real-time Socket.io layer (city, ward, and post rooms)** | ✅ Complete |
-| **Phase 6: Emergency SOS Hub (500ms hold-to-arm, confirm modal, 999 quick call)** | ✅ Complete |
-| **Phase 6: Fixed EmergencyBanner + 30-min auto-dismiss** | ✅ Complete |
-| **Phase 7: Anthropic Claude AI civic resolution suggestions + opt-in** | ✅ Complete |
-| **Phase 8: Threaded comments system with nested replies & author karma** | ✅ Complete |
-| **Phase 8: Ward Circles (`/ward/[id]`) for Dhaka's 92 wards** | ✅ Complete |
-| **Phase 8: Profile View (`/profile`) with citizen points & karma scoring** | ✅ Complete |
-| **Phase 8: Dhaka Civic Leaderboard (`/leaderboard`) with rankings & badges** | ✅ Complete |
-| **Phase 8: Media Uploads (Multer & Cloudinary / Data URL support)** | ✅ Complete |
-| **Phase 8: Bilingual Bengali (বাংলা) / English (EN) language toggle** | ✅ Complete |
-
-See `UpAware_Build_Prompt.md` for the original specification.
 
