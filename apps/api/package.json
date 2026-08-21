@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npx nodemon --watch src --ext ts --exec \"npx ts-node src/index.ts\"",
     "build": "prisma generate && tsc",
-    "start": "node dist/index.js",
+    "start": "node dist/src/index.js",
     "db:generate": "npx prisma generate",
     "db:migrate": "npx prisma migrate dev --name init",
     "db:push": "npx prisma db push",
