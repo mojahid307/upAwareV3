@@ -12,10 +12,19 @@
     "build:web": "npm run build --workspace apps/web",
     "build:api": "npm run build --workspace apps/api",
     "db:migrate": "npm run db:migrate --workspace apps/api",
+    "db:push": "npm run db:push --workspace apps/api",
     "db:seed": "npm run db:seed --workspace apps/api",
     "db:generate": "npm run db:generate --workspace apps/api"
   },
   "engines": {
     "node": ">=20"
+  },
+  "overrides": {
+    "glob": "^11.0.0",
+    "postcss": "^8.4.49",
+    "minimatch": "^9.0.5",
+    "next": {
+      "postcss": "^8.4.49"
+    }
   }
 }

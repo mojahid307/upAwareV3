@@ -35,6 +35,7 @@ export interface User {
   id: string;
   name: string;
   email?: string | null;
+  phone?: string | null;
   avatarUrl?: string | null;
   ward?: number | null;
   role: Role;
@@ -42,11 +43,13 @@ export interface User {
   points: number;
 }
 
-/** Lightweight author projection embedded in feed/post responses. */
+/** Lightweight author projection embedded in feed/post/comment responses. */
 export interface Author {
   id: string;
   name: string;
   avatarUrl?: string | null;
+  role?: Role;
+  isVolunteer?: boolean;
 }
 
 export interface Post {
@@ -69,6 +72,38 @@ export interface Post {
   commentCount?: number;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Comment {
+  id: string;
+  body: string;
+  isAnon: boolean;
+  postId: string;
+  parentId?: string | null;
+  author: Author;
+  createdAt: string;
+  replies?: Comment[];
+}
+
+export interface WardInfo {
+  wardNumber: number;
+  name: string;
+  areaNames: string[];
+  totalPosts: number;
+  openIssues: number;
+  resolvedIssues: number;
+  councillorOffice?: string;
+  emergencyPhone?: string;
+}
+
+export interface LeaderboardUser {
+  id: string;
+  name: string;
+  avatarUrl?: string | null;
+  ward?: number | null;
+  points: number;
+  isVolunteer: boolean;
+  role?: Role;
 }
 
 export interface AuthResponse {

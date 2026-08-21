@@ -1,0 +1,115 @@
+// UpAware Prisma Schema
+// Mirrors the build spec exactly.
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
+  extensions = [postgis]
+}
+
+enum Role {
+  USER
+  VOLUNTEER
+  AUTHORITY
+  ADMIN
+}
+
+enum Category {
+  TRAFFIC
+  INFRASTRUCTURE
+  SAFETY
+  HEALTH
+  ENVIRONMENT
+  CRIME
+  OTHER
+}
+
+enum Severity {
+  EMERGENCY
+  NORMAL
+}
+
+enum Status {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  email        String?   @unique
+  phone        String?   @unique
+  passwordHash String?
+  avatarUrl    String?
+  ward         Int?
+  role         Role      @default(USER)
+  isVolunteer  Boolean   @default(false)
+  points       Int       @default(0)
+  fcmToken     String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  posts        Post[]
+  votes        Vote[]
+  comments     Comment[]
+}
+
+model Post {
+  id          String    @id @default(cuid())
+  title       String
+  body        String
+  category    Category
+  severity    Severity  @default(NORMAL)
+  status      Status    @default(OPEN)
+  lat         Float
+  lng         Float
+  address     String?
+  ward        Int?
+  mediaUrls   String[]  @default([])
+  isAnon      Boolean   @default(false)
+  aiAllowed   Boolean   @default(false)
+  upvoteCount Int       @default(0)
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id])
+  votes       Vote[]
+  comments    Comment[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([lat, lng])
+  @@index([ward])
+  @@index([severity])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Vote {
+  id        String   @id @default(cuid())
+  userId    String
+  postId    String
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+}
+
+model Comment {
+  id        String    @id @default(cuid())
+  body      String
+  isAnon    Boolean   @default(false)
+  authorId  String
+  postId    String
+  parentId  String?
+  author    User      @relation(fields: [authorId], references: [id])
+  post      Post      @relation(fields: [postId], references: [id])
+  parent    Comment?  @relation("Replies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("Replies")
+  createdAt DateTime  @default(now())
+}
