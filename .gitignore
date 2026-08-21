@@ -35,14 +35,4 @@ Thumbs.db
 *.tsbuildinfo
 next-env.d.ts
 
-# ignore app-level folders
-app/
-components/
-hooks/
-lib/
-
-# ignore the same inside the web app
-apps/web/app/
-apps/web/components/
-apps/web/hooks/
-apps/web/lib/
+# Frontend source is tracked for deployment.

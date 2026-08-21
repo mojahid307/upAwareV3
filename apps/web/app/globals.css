@@ -1,0 +1,128 @@
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * UpAware Design System
+ * Color tokens from the build spec (hex → HSL for shadcn-style variable layering).
+ *   --primary  #1D9E75  teal   — brand, upvotes, resolved pins, CTAs
+ *   --emergency#E24B4A  red    — emergency pins, SOS button, alert bar
+ *   --active   #F5A623  amber  — normal open/in-progress pins
+ *   --dark     #1C2B3A         — heading text
+ *   --muted    #5A6A7A         — secondary text, labels
+ *   --surface  #F5F6F8         — page and card backgrounds
+ *   --border   #E2E8F0         — card borders, dividers
+ */
+@layer base {
+  :root {
+    /* Brand */
+    --primary: 160 69% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --emergency: 0 73% 59%;
+    --emergency-foreground: 0 0% 100%;
+
+    --active: 36 91% 55%;
+    --active-foreground: 210 35% 17%;
+
+    /* Text */
+    --dark: 210 35% 17%;
+    --dark-foreground: 0 0% 100%;
+    --muted: 210 15% 42%;
+    --muted-foreground: 210 15% 42%;
+
+    /* Surfaces */
+    --surface: 220 20% 97%;
+    --surface-foreground: 210 35% 17%;
+    --background: 0 0% 100%;
+    --foreground: 210 35% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 35% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 35% 17%;
+
+    /* Lines */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 160 69% 36%;
+
+    /* Semantic */
+    --secondary: 220 20% 96%;
+    --secondary-foreground: 210 35% 17%;
+    --accent: 160 69% 95%;
+    --accent-foreground: 160 69% 30%;
+    --destructive: 0 73% 59%;
+    --destructive-foreground: 0 0% 100%;
+
+    --radius: 0.625rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface text-foreground font-sans antialiased;
+    /* Base body size 15px per spec typography rules */
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-dark font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Skeleton shimmer block — used by skeleton loaders in the feed */
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-border/60;
+  }
+  .skeleton::after {
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    content: "";
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+  }
+
+  /* Pill-style category badges */
+  .badge-dot {
+    @apply inline-block h-1.5 w-1.5 rounded-full;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbars on horizontal scroll rows while keeping scroll behavior */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Line clamp helpers (Tailwind has these built-in via @tailwindcss/line-clamp,
+     but we inline them to avoid an extra plugin dependency) */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
